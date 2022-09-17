@@ -45,7 +45,7 @@
         </button>
 
         <button
-          v-if="canLogout"
+          v-if="authMethod == 'json'"
           @click="logout"
           class="action"
           id="logout"
@@ -117,7 +117,7 @@ import {
   signup,
   disableExternal,
   noAuth,
-  loginPage,
+  authMethod,
 } from "@/utils/constants";
 import { files as api } from "@/api";
 import ProgressBar from "vue-simple-progress";
@@ -137,7 +137,8 @@ export default {
     signup: () => signup,
     version: () => version,
     disableExternal: () => disableExternal,
-    canLogout: () => !noAuth && loginPage,
+    noAuth: () => noAuth,
+    authMethod: () => authMethod,
   },
   asyncComputed: {
     usage: {
